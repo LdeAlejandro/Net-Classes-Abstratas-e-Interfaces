@@ -6,7 +6,7 @@ using Abstract_exercise.Models;
 
 namespace Abstract_exercise.Models
 {
-    public class computador
+    public class Computador
     {
         public override string ToString()
         {

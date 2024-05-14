@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Abstract_exercise
-build_property.ProjectDir = C:\Users\Alejandro\Desktop\Cursos\net abstract\
+build_property.ProjectDir = /workspaces/Net-Classes-Abstratas-e-Interfaces/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

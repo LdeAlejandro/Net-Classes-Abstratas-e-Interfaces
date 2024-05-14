@@ -1,9 +1,26 @@
 ﻿using Abstract_exercise.Models;
+using Abstract_exercise.Interfaces;
+
+
 
 //*************************************************************************************************
-Computador c = new Computador();
 
-Console.WriteLine(c.ToString());
+
+
+//*************************************************************************************************
+//as intefaces nao podem ser instaciadas, mas podem ser usadas da seguinte manera: 
+ICalculadora c1 = new Calculadora();
+
+Console.WriteLine($"Soma: {c1.Somar(1,3)}");
+Console.WriteLine($"Substrair: {c1.Subtrair(1,3)}");
+Console.WriteLine($"Multiplicar: {c1.Multiplicar(1,3)}");
+Console.WriteLine($"Dividir: {c1.Dividir(1,3)}");
+
+
+//*************************************************************************************************
+// Computador c = new Computador();
+
+// Console.WriteLine(c.ToString());
 
 //*************************************************************************************************
 //instanciando pessoa

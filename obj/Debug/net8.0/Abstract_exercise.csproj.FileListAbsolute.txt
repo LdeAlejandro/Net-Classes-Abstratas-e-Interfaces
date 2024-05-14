@@ -1,14 +1,29 @@
-C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\Abstract_exercise.exe
-C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\Abstract_exercise.deps.json
-C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\Abstract_exercise.runtimeconfig.json
-C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\Abstract_exercise.dll
-C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\Abstract_exercise.pdb
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.AssemblyInfoInputs.cache
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.AssemblyInfo.cs
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.csproj.CoreCompileInputs.cache
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.dll
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\refint\Abstract_exercise.dll
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.pdb
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\Abstract_exercise.genruntimeconfig.cache
-C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\ref\Abstract_exercise.dll
+C:/Users/Alejandro/Desktop/Cursos/net abstract/bin/Debug/net8.0/Abstract_exercise.exe
+C:/Users/Alejandro/Desktop/Cursos/net abstract/bin/Debug/net8.0/Abstract_exercise.deps.json
+C:/Users/Alejandro/Desktop/Cursos/net abstract/bin/Debug/net8.0/Abstract_exercise.runtimeconfig.json
+C:/Users/Alejandro/Desktop/Cursos/net abstract/bin/Debug/net8.0/Abstract_exercise.dll
+C:/Users/Alejandro/Desktop/Cursos/net abstract/bin/Debug/net8.0/Abstract_exercise.pdb
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.AssemblyInfoInputs.cache
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.AssemblyInfo.cs
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.csproj.CoreCompileInputs.cache
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.dll
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/refint/Abstract_exercise.dll
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.pdb
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/Abstract_exercise.genruntimeconfig.cache
+C:/Users/Alejandro/Desktop/Cursos/net abstract/obj/Debug/net8.0/ref/Abstract_exercise.dll
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.AssemblyInfoInputs.cache
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.AssemblyInfo.cs
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.csproj.CoreCompileInputs.cache
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.sourcelink.json
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.dll
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/refint/Abstract_exercise.dll
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.pdb
+/workspaces/Net-Classes-Abstratas-e-Interfaces/bin/Debug/net8.0/Abstract_exercise
+/workspaces/Net-Classes-Abstratas-e-Interfaces/bin/Debug/net8.0/Abstract_exercise.deps.json
+/workspaces/Net-Classes-Abstratas-e-Interfaces/bin/Debug/net8.0/Abstract_exercise.runtimeconfig.json
+/workspaces/Net-Classes-Abstratas-e-Interfaces/bin/Debug/net8.0/Abstract_exercise.dll
+/workspaces/Net-Classes-Abstratas-e-Interfaces/bin/Debug/net8.0/Abstract_exercise.pdb
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/Abstract_exercise.genruntimeconfig.cache
+/workspaces/Net-Classes-Abstratas-e-Interfaces/obj/Debug/net8.0/ref/Abstract_exercise.dll
