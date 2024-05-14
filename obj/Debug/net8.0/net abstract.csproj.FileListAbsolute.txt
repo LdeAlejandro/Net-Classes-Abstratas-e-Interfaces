@@ -1,0 +1,14 @@
+C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\net abstract.exe
+C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\net abstract.deps.json
+C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\net abstract.runtimeconfig.json
+C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\net abstract.dll
+C:\Users\Alejandro\Desktop\Cursos\net abstract\bin\Debug\net8.0\net abstract.pdb
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.AssemblyInfoInputs.cache
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.AssemblyInfo.cs
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.dll
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\refint\net abstract.dll
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.pdb
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\net abstract.genruntimeconfig.cache
+C:\Users\Alejandro\Desktop\Cursos\net abstract\obj\Debug\net8.0\ref\net abstract.dll
