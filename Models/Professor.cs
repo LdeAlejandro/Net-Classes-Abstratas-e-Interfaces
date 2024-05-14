@@ -6,6 +6,8 @@ using Abstract_exercise.Models;
 
 namespace Abstract_exercise.Models
 {
+    // com Sealed a classe Professor nao pode ser mais herdada  me outra classe.
+    //public sealed class Professor : Pessoa
     public class Professor : Pessoa
     {
          // Criando contructor, : base(nome): Esta é a chamada para o construtor da classe base en este caso seria . Quando uma classe herda de outra classe em este caso Pessoa
@@ -22,7 +24,8 @@ namespace Abstract_exercise.Models
         public decimal Salario { get; set; }
 
         //overrided de Pessoa  Apresentar() para trocar o que o metodo faz.
-        public override void Apresentar()
+        //sealed nao permitira que a metodo heradado possa ser mudado.
+        public sealed override void Apresentar()
         {
             Console.WriteLine($"Olá, meu nome sou o professor {Nome} de {Idade} anos. salario: {Salario}.");
         }
