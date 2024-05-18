@@ -176,6 +176,55 @@ El código proporcionado muestra ejemplos de cómo trabajar con clases, propieda
 
 Este documento proporciona una descripción detallada de la clase `Curso` y sus funcionalidades asociadas, facilitando la comprensión y aplicación de estos conceptos en proyectos de desarrollo en C#.
 
+```c#
+using System;
+using System.Collections.Generic;
+
+namespace Curso_Net_2.Models
+{
+    public class Curso
+    {
+        public string Nome { get; set; }
+        public List<Pessoa> Alunos { get; set; }
+
+        public void AdicionarAluno(Pessoa aluno)
+        {
+            Alunos.Add(aluno);
+        }
+
+        public int ObterQuantidadeDeAlunosMatriculados()
+        {
+            return Alunos.Count;
+        }
+
+        public bool RemoverAluno(Pessoa aluno)
+        {
+            return Alunos.Remove(aluno);
+        }
+
+        public void ListarAlunos()
+        {
+            Console.WriteLine($"Alunos do curso de: {Nome}");
+
+            for(int i = 0; i < Alunos.Count; i++)
+            {
+                int numeroDeAluno = i + 1;
+                string text = $"Aluno Nr {numeroDeAluno:D2}. - {Alunos[i].NomeCompleto}";
+                Console.WriteLine(text);
+            }
+
+            Console.WriteLine("*******************************************************");
+
+            foreach(Pessoa aluno in Alunos)
+            {
+                int numeroDeAluno = Alunos.IndexOf(aluno) + 1;
+                string text = $"Aluno Nr {numeroDeAluno:D2}. - {aluno.NomeCompleto}";
+                Console.WriteLine(text);
+            }
+        }
+    }
+}
+```
 
 # Doc ExemploExcecao.cs Manipulando Dados e Objetos
 
@@ -187,6 +236,45 @@ En este documento se presenta una categorización y documentación detallada del
 
 ### Descripción
 La clase `ExemploExcecao` contiene una serie de métodos que se llaman entre sí y generan y manejan una excepción.
+
+```csharp
+using System;
+
+namespace Curso_Net_2.Models
+{
+    public class ExemploExcecao
+    {
+        public void Metodo1()
+        {
+            try
+            {
+                Metodo2();
+                Console.WriteLine("Try");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Catch");
+                Console.WriteLine("Excepción tratada:\n" + ex.StackTrace);
+            }
+        }
+
+        public void Metodo2()
+        {
+            Metodo3();
+        }
+
+        public void Metodo3()
+        {
+            Metodo4();
+        }
+
+        public void Metodo4()
+        {
+            throw new Exception("Ocurrió una excepción");
+        }
+    }
+}
+```
 
 ### Métodos
 
@@ -280,3 +368,169 @@ class Program
 ```
 
 Este documento proporciona una descripción detallada del método `readFile` en la clase `LeituraArquivo`, facilitando la comprensión y aplicación del manejo de lectura de archivos y retorno de tuplas en proyectos de desarrollo en C#.
+
+
+# Doc Pessoa.cs Manipulando Dados e Objetos
+
+
+#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso
+
+[[Doc Program.cs Manipulando Dados e Objetos]]
+# Categorización y Documentación del Código
+
+En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `Pessoa` en C# con diversas funcionalidades incluyendo constructores, destructores, propiedades y métodos.
+
+## Clase Pessoa
+
+### Descripción
+La clase `Pessoa` representa una persona con propiedades de nombre, apellido y edad. También incluye métodos para presentar la información de la persona y un destructor para obtener las propiedades por separado.
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Curso_Net_2.Models
+{
+    public class Pessoa
+    {
+        public Pessoa()
+        {
+        }
+
+        // Exemplo de constructor
+        public Pessoa(string nome, string sobrenome)
+        {
+            Nome = nome;
+            Sobrenome = sobrenome;
+        }
+
+        // Exemplo de destructor, a declaração da variáveis é inversa e tem os parâmetros out
+        public void Deconstruct(out string nome, out string sobrenome)
+        {
+            nome = Nome;
+            sobrenome = Sobrenome;
+        }
+
+        private string _nome;
+        private int _idade;
+
+        public string Nome
+        {
+            // Usando expressão lambda para get
+            get => _nome.ToUpper();
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("O nome não pode ser vazio");
+                }
+                _nome = value;
+            }
+        }
+
+        public string Sobrenome { get; set; }
+
+        public int Idade
+        {
+            get => _idade;
+
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("A idade não pode ser menor ou igual a zero");
+                }
+                _idade = value;
+            }
+        }
+
+        public string NomeCompleto => $"{Nome} {Sobrenome}".ToUpper();
+
+        public void Apresentar()
+        {
+            Console.WriteLine($"Nome: {NomeCompleto}, Idade: {Idade}");
+        }
+    }
+}
+```
+
+
+### Propiedades
+
+- **Nome** (`string`)
+    
+    - **Descripción**: Nombre de la persona. No puede ser una cadena vacía.
+    - **Getter**: Devuelve el nombre en mayúsculas.
+    - **Setter**: Establece el nombre. Si es una cadena vacía, lanza una excepción `ArgumentException`.
+- **Sobrenome** (`string`)
+    
+    - **Descripción**: Apellido de la persona. Se establece y se obtiene directamente.
+- **Idade** (`int`)
+    
+    - **Descripción**: Edad de la persona. Debe ser mayor que 0.
+    - **Getter**: Devuelve la edad.
+    - **Setter**: Establece la edad. Si es menor o igual a 0, lanza una excepción `ArgumentException`.
+- **NomeCompleto** (`string`)
+    
+    - **Descripción**: Devuelve el nombre completo (nombre y apellido) en mayúsculas.
+
+### Métodos
+
+- **Pessoa()**
+    
+    - **Descripción**: Constructor por defecto.
+- **Pessoa(string nome, string sobrenome)**
+    
+    - **Descripción**: Constructor que inicializa las propiedades `Nome` y `Sobrenome`.
+    - **Parámetros**:
+        - `nome` (`string`): El nombre de la persona.
+        - `sobrenome` (`string`): El apellido de la persona.
+- **Deconstruct(out string nome, out string sobrenome)**
+    
+    - **Descripción**: Destructor que devuelve el nombre y el apellido como variables separadas.
+    - **Parámetros**:
+        - `nome` (`string`): Variable de salida que contendrá el nombre.
+        - `sobrenome` (`string`): Variable de salida que contendrá el apellido.
+- **Apresentar()**
+    
+    - **Descripción**: Imprime el nombre completo y la edad de la persona en la consola.
+
+- 
+
+### Ejemplo de Uso
+
+```c#
+using Curso_Net_2.Models;
+
+class Program
+{
+    static void Main()
+    {
+        // Usando constructor con parámetros
+        Pessoa p1 = new Pessoa("Alejandro", "Garcia");
+        p1.Idade = 30;
+
+        // Presentar los detalles de la persona
+        p1.Apresentar();
+
+        // Usando el destructor
+        (string nome, string sobrenome) = p1;
+        Console.WriteLine($"Nome: {nome}, Sobrenome: {sobrenome}");
+
+        // Usando el constructor por defecto y estableciendo propiedades después
+        Pessoa p2 = new Pessoa();
+        p2.Nome = "Letzalet";
+        p2.Sobrenome = "Amoroso";
+        p2.Idade = 25;
+
+        // Presentar los detalles de la segunda persona
+        p2.Apresentar();
+    }
+}
+```
+
+Este documento proporciona una descripción detallada de la clase `Pessoa`, sus propiedades y métodos, facilitando la comprensión y aplicación del manejo de objetos de persona en proyectos de desarrollo en C#.
+
