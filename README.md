@@ -1,184 +1,107 @@
-# Doc Program.cs Herancia-Poliformismo
 
-## Categorización y Documentación del Código
+# Doc Program.cs Clases Abstractas e Interfaces
 
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra ejemplos de uso de herencia, polimorfismo y encapsulamiento en C#.
+### Uso de Interfaces y Clases Abstractas en el Ejercicio
 
-## Herencia y Polimorfismo
+En este código, se están utilizando interfaces y clases abstractas para modelar diferentes comportamientos y relaciones entre objetos. A continuación, se explica cada parte del código:
 
-El código ejemplifica el uso de herencia y polimorfismo a través de las clases `Aluno` y `Professor`, las cuales heredan de una clase base común `Pessoa`.
+#### Uso de Interfaz y Clase Implementadora
 
-# Código Documentado y Categorizado
 
-## Introducción
+```c#
+// Instancia de la interfaz ICalculadora utilizando la clase Calculadora que la implementa
+ICalculadora c1 = new Calculadora();
 
-Este documento contiene ejemplos de código que ilustran conceptos de herencia, polimorfismo y encapsulamiento en C#. Las secciones incluyen el uso de herencia con clases `Aluno` y `Professor`, y encapsulamiento con la clase `ContaCorrente`.
+// Llamadas a los métodos definidos en la interfaz ICalculadora
+Console.WriteLine($"Soma: {c1.Somar(1,3)}");
+Console.WriteLine($"Substrair: {c1.Subtrair(1,3)}");
+Console.WriteLine($"Multiplicar: {c1.Multiplicar(1,3)}");
+Console.WriteLine($"Dividir: {c1.Dividir(1,3)}");
 
-## Código
+```
 
-### Uso de Herencia y Polimorfismo
+En este fragmento, se crea una instancia de la interfaz `ICalculadora` utilizando la clase `Calculadora`, que implementa los métodos definidos en la interfaz. Luego, se realizan llamadas a estos métodos para realizar operaciones matemáticas básicas.
 
-El siguiente código demuestra el uso de herencia y polimorfismo creando instancias de `Aluno` y `Professor`, que heredan de la clase base `Pessoa`.
+#### Otros Ejemplos de Uso
 
-```csharp
-using Heranca_polimorfismo.Models;
+```c#
+// Instancia de un objeto de la clase Computador y llamada al método ToString()
+Computador c = new Computador();
+Console.WriteLine(c.ToString());
 
-//***********************************************************************
-// Herança e polimorfismo
-
-Aluno a1 = new Aluno();
-
-a1.Nome = "Juanito";
-a1.Idade = 17;
-a1.Nota = 10;
-a1.Email = "juanito@gmail.com";
+// Creación de un objeto Aluno con un nombre específico y llamada al método Apresentar()
+Aluno a1 = new Aluno("Pedrito");
 a1.Apresentar();
 
-Professor p1 = new Professor();
-
-p1.Nome = "Eduardo";
-p1.Idade = 30;
-p1.Salario = 1000;
-p1.Apresentar();
-
+// Creación de un objeto Corrente y llamada al método Creditar()
+Corrente c = new Corrente();
+c.Creditar(500);
+c.ExibirSaldo();
 ```
 
-**Respuesta esperada:**
 
-```text
-Olá, meu nome é Juanito e tenho 17 anos e sou um aluno nota 10, meu email é juanito@gmail.com.
-Olá, meu nome sou o professor Eduardo de 30 anos. salario: 1000.
-```
+Estos fragmentos muestran ejemplos adicionales de cómo se pueden utilizar clases y métodos definidos en el ejercicio. Se instancia un objeto de la clase `Computador` y se llama al método `ToString()`, se crea un objeto `Aluno` con un nombre específico y se llama al método `Apresentar()`, y se crea un objeto `Corrente` y se llama al método `Creditar()`.
 
-### Encapsulamiento
+# Doc Professor .cs Clases Abstractas e Interfaces
 
-El siguiente código muestra el uso del encapsulamiento con la clase `ContaCorrente`, que permite manejar operaciones bancarias básicas.
+En esta clase, se modela un profesor que hereda de la clase `Pessoa`. Se proporcionan constructores que permiten la creación de instancias con o sin pasar el nombre. Se agrega una propiedad `Salario` y se sobrescribe el método `Apresentar()` de la clase base `Pessoa`, sellándolo para evitar que sea modificado en clases derivadas.
 
 ```c#
-//***********************************************************************
-Encapsulamento
-ContaCorrente c1 = new ContaCorrente(12312312, 1000);
+namespace Abstract_exercise.Models
+{
+    public class Professor : Pessoa
+    {
+        // Constructor de la clase Professor que llama al constructor de la clase base Pessoa
+        public Professor(String nome) : base(nome)
+        {
 
-c1.ExibirSaldo();
-c1.Sacar(350);
-c1.ExibirSaldo();
+        }
+
+        // Constructor adicional que permite instanciar la clase sin pasar el nombre
+        public Professor()
+        {
+
+        }
+
+        // Propiedad adicional de la clase Professor
+        public decimal Salario { get; set; }
+
+        // Método sobrescrito de la clase base Pessoa
+        public sealed override void Apresentar()
+        {
+            Console.WriteLine($"Olá, meu nome sou o professor {Nome} de {Idade} anos. salario: {Salario}.");
+        }
+    }
+}
 
 ```
 
-**Respuesta esperada:**
+# Doc Pessoa.cs Clases Abstractas e Interfaces
 
-```
-Saldo atual: 1000
-Saque de 350 realizado.
-Saldo atual: 650
-```
-### Clase Base `Pessoa`
-
-Este código muestra la creación y uso de la clase `Pessoa`, la cual es utilizada como clase base para `Aluno` y `Professor`.
+En esta clase, se modela una persona con un nombre y una edad. Se proporciona un constructor que requiere el nombre como parámetro y otro constructor sin parámetros para permitir la creación de instancias sin pasar el nombre. Además, se implementa un método virtual `Apresentar()` que muestra el nombre y la edad de la persona.
 
 ```c#
-//***********************************************************************
-Pessoa p1 = new Pessoa();
-p1.Nome = "Alejandro";
-p1.Idade = 29;
-
-p1.Apresentar();
-```
-
-**Respuesta esperada:**
-
-```
-Olá, meu nome é Alejandro e tenho 29 anos.
-```
-
-Código completo:
-
-```c#
-﻿using Heranca_polimorfismo.Models;
-
-
-
-//***********************************************************************
-//Herança e polimorfismo
-
-Aluno a1 = new Aluno();
-
-a1.Nome = "Juanito";
-a1.Idade = 17;
-a1.Nota = 10;
-a1.Email = "juanito@gmail.com";
-a1.Apresentar();
-
-Professor p1 = new Professor();
-
-p1.Nome = "Eduardo";
-p1.Idade = 30;
-p1.Salario = 1000;
-p1.Apresentar();
-
-//***********************************************************************
-//encapsulamiente
-// ContaCorrente c1 = new ContaCorrente(12312312, 1000);
-
-// c1.ExibirSaldo();
-// c1.Sacar(350);
-// c1.ExibirSaldo();
-//***********************************************************************
-// Pessoa p1 = new Pessoa();
-// p1.Nome = "Alejandro";
-// p1.Idade = 29;
-
-// p1.Apresentar();
-```
-## Conclusión
-
-El código presentado ilustra conceptos fundamentales de herencia, polimorfismo y encapsulamiento en C#. Las secciones están categorizadas para facilitar su comprensión y aplicación en proyectos de programación orientada a objetos.
-
-
-## Notas Adicionales
-
-- **Herencia y Polimorfismo**: Se demuestra cómo las clases `Aluno` y `Professor` heredan propiedades y métodos de la clase `Pessoa`, y cómo se puede sobrescribir el método `Apresentar` para incluir información específica de cada clase derivada.
-- **Encapsulamiento**: Se muestra cómo encapsular datos y operaciones dentro de la clase `ContaCorrente`, asegurando que el saldo de la cuenta no pueda ser modificado directamente desde fuera de la clase.
-- **Uso de la Clase Base `Pessoa`**: Se incluye un ejemplo básico de cómo crear e interactuar con una instancia de la clase `Pessoa`.
-
-Este formato documentado y categorizado proporciona una referencia clara y estructurada de los conceptos y su implementación en C#.
-
-# Doc Pessoa.cs Herancia-Poliformismo
-
-### Información y Categorización del Código
-
-#### Descripción General
-
-El código proporcionado define una clase llamada `Pessoa` en el espacio de nombres `Heranca_polimorfismo.Models`. Esta clase modela una entidad genérica de una persona, con propiedades para el nombre y la edad, así como un método virtual para presentar a la persona.
-
-#### Definición de la Clase `Pessoa`
-
-La clase `Pessoa` tiene las siguientes características:
-
-- **Propiedades**:
-    
-    - `Nome`: Propiedad que almacena el nombre de la persona (tipo `string`).
-    - `Idade`: Propiedad que almacena la edad de la persona (tipo `int`).
-- **Métodos**:
-    
-    - `Apresentar()`: Método virtual que imprime un saludo con el nombre y la edad de la persona. El saludo está formateado con el nombre y la edad de la persona. Este método puede ser sobrescrito por clases derivadas para proporcionar un saludo personalizado.
-- **Modificador `virtual`**: El método `Apresentar()` se declara con el modificador `virtual`, lo que indica que puede ser sobrescrito por clases derivadas utilizando el mecanismo de polimorfismo.
-
-```c#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Heranca_polimorfismo.Models
+namespace Abstract_exercise.Models
 {
     public class Pessoa
     {
+        // Constructor de la clase Pessoa que requiere el nombre como parámetro
+        public Pessoa (string nome)
+        {
+            Nome = nome;
+        }
+
+        // Constructor adicional que permite instanciar la clase sin pasar el nombre
+        public Pessoa ()
+        {
+
+        }
+
+        // Propiedades de la clase Pessoa
         public string Nome { get; set; }
         public int Idade { get; set; }
 
-
-        // com virtual indicamos que este metodo pode ser alterado com polimorfismo
+        // Método virtual que puede ser sobrescrito en clases derivadas
         public virtual void Apresentar()
         {
             Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos.");
@@ -186,174 +109,222 @@ namespace Heranca_polimorfismo.Models
     }
 }
 ```
-    
+#Doc ICalculadora Clases Abstractas e Interfaces
 
-#### Comentarios y Documentación
+#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso #ClasesAbstractas-Interfaces
 
-El código proporcionado no incluye comentarios o documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
+### Interfaz `ICalculadora`
 
-# Doc Aluno.cs Herancia-Poliformismo
-
-#### Descripción General
-
-El código proporcionado define una clase llamada `Aluno` que hereda de la clase base `Pessoa` en el espacio de nombres `Heranca_polimorfismo.Models`. Esta clase modela un estudiante y extiende las funcionalidades de la clase base al agregar propiedades específicas para la nota y el correo electrónico del estudiante, así como una implementación sobrescrita del método `Apresentar()`.
-
-#### Definición de la Clase `Aluno`
-
-La clase `Aluno` tiene las siguientes características:
-
-- **Hereda de `Pessoa`**: La clase `Aluno` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
-    
-- **Propiedades Adicionales**:
-    
-    - `Nota`: Propiedad que almacena la nota del estudiante (tipo `double`).
-    - `Email`: Propiedad que almacena el correo electrónico del estudiante (tipo `string`).
-- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los estudiantes. La implementación sobrescrita agrega información sobre la nota y el correo electrónico del estudiante.
-    
-```c#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Heranca_polimorfismo.Models
-{
-    public class Aluno : Pessoa
-    {
-        public double Nota { get; set; }
-        public string Email { get; set; }
-
-        public override void Apresentar()
-        {
-            Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos e sou um aluno nota {Nota}, meu email é {Email}.");
-        }
-
-    }
-}
-```
-#### Comentarios y Documentación
-
-El código proporcionado no incluye comentarios o documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
-
-# Doc ContaCorrente.cs Herancia-Poliformismo
-
-### Información y Categorización del Código
-
-#### Descripción General
-
-El código define una clase llamada `Professor` en el espacio de nombres `Heranca_polimorfismo.Models`, que representa a un profesor y hereda de la clase base `Pessoa`. La clase proporciona una propiedad adicional para el salario del profesor y sobrescribe el método `Apresentar()` para proporcionar una presentación personalizada para los profesores.
-
-#### Definición de la Clase `Professor`
-
-La clase `Professor` tiene las siguientes características:
-
-- **Hereda de `Pessoa`**: La clase `Professor` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
-    
-- **Propiedad Adicional**:
-    
-    - `Salario`: Propiedad que almacena el salario del profesor (tipo `decimal`).
-- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los profesores. La implementación sobrescrita agrega información sobre el salario del profesor.
+La interfaz `ICalculadora` define un conjunto de métodos para realizar operaciones matemáticas básicas. Estos métodos deben ser implementados por cualquier clase que desee actuar como una calculadora.
 
 ```c#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Heranca_polimorfismo.Models
+// Declaración de la interfaz ICalculadora
+public interface ICalculadora
 {
-    public class ContaCorrente
+    // Métodos que deben ser implementados por las clases que utilicen esta interfaz
+    int Somar(int num1, int num2);
+    int Subtrair(int num1, int num2);
+    int Multiplicar(int num1, int num2);
+    int Dividir(int num1, int num2);
+
+    // Este método también se define en la interfaz, pero proporciona una implementación predeterminada
+    // Las clases que implementen esta interfaz pueden optar por usar esta implementación o proporcionar una propia
+    int Dividir(int num1, int num2)
     {
-        public ContaCorrente(int numeroDeConta, decimal saldoInicial)
-        {
-            NumeroDeConta = numeroDeConta;
-            saldo = saldoInicial;
-        }
-        public int NumeroDeConta { get; set; }
-
-        private decimal saldo;
-
-        public void Sacar(decimal valor)
-        {
-            if(saldo >= valor)
-            {
-                saldo -= valor;
-                Console.WriteLine($"Saque de {valor} realizado.");
-            }
-            else
-            {
-                Console.WriteLine($"Sem saldo suficiente.");
-            }
-        }
-
-        
-            public void ExibirSaldo()
-            {
-              Console.WriteLine($"Saldo atual: {saldo}");  
-            }
-            
-
-
+        return num1, num2;
     }
 }
 ```
 
+Esta interfaz proporciona una especificación clara de las operaciones que una calculadora debe admitir. Cualquier clase que desee actuar como una calculadora debe implementar esta interfaz y proporcionar implementaciones para los métodos definidos en ella.
 
-#### Comentarios y Documentación
-
-El código proporcionado no incluye comentarios ni documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
-
-# Doc Professor.cs Herancia-Poliformismo
+# Doc Diretor.cs Clases Abstractas e Interfaces
 
 
-### Información y Categorización del Código
+#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso #ClasesAbstractas-Interfaces
 
-#### Descripción General
 
-El código define una clase llamada `Professor` en el espacio de nombres `Heranca_polimorfismo.Models`, que representa a un profesor y hereda de la clase base `Pessoa`. La clase proporciona una propiedad adicional para el salario del profesor y sobrescribe el método `Apresentar()` para proporcionar una presentación personalizada para los profesores.
-
-#### Definición de la Clase `Professor`
-
-La clase `Professor` tiene las siguientes características:
-
-- **Hereda de `Pessoa`**: La clase `Professor` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
-    
-- **Propiedad Adicional**:
-    
-    - `Salario`: Propiedad que almacena el salario del profesor (tipo `decimal`).
-- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los profesores. La implementación sobrescrita agrega información sobre el salario del profesor.
+En esta clase, se intenta sobrescribir el método `Apresentar()` de la clase base `Professor`, lo cual daría error si el método en la clase base estuviera sellado.
 
 ```c#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Heranca_polimorfismo.Models;
-
-namespace Heranca_polimorfismo.Models
+public class Diretor: Professor
 {
-    /// <summary>
-    /// Representa um professor que herda as características da classe Pessoa.
-    /// </summary>
-    public class Professor : Pessoa
-    {
-        /// <summary>
-        /// Obtém ou define o salário do professor.
-        /// </summary>
-        public decimal Salario { get; set; }
+     Se muestra un ejemplo de intento de sobreescritura de método en una clase sellada
+     Este fragmento daría error si el método en la clase base estuviera sellado
+     public override void Apresentar()
+     {
+         Console.WriteLine($"Diretor");
+     }
+}
+```
 
-        /// <summary>
-        /// Sobrescreve o método Apresentar() da classe base Pessoa para fornecer uma apresentação personalizada para professores.
-        /// </summary>
-        public override void Apresentar()
+#Doc Corrente.cs Clases Abstractas e Interfaces
+
+
+#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso #ClasesAbstractas-Interfaces
+
+Esta clase hereda de la clase `Conta` y sobrescribe el método `Creditar()`, que agrega un valor al saldo de la cuenta.
+
+```c#
+public class Corrente : Conta
+{
+    // Método sobreescrito de la clase base Conta
+    public override void Creditar(decimal valor)
+    {
+        saldo += valor;
+    }
+}
+```
+# Doc ContaCorrente.cs Doc Program.cs Clases Abstractas e Interfaces
+
+En este conjunto de códigos, se utilizan clases y herencia para modelar diferentes tipos de objetos y comportamientos. A continuación, se documenta y explica cada parte del código:
+
+```c#
+public class ContaCorrente 
+{
+    // Constructor de la clase ContaCorrente
+    public ContaCorrente(int numeroDeConta, decimal saldoInicial)
+    {
+        NumeroDeConta = numeroDeConta;
+        saldo = saldoInicial;
+    }
+
+    // Propiedades de la clase ContaCorrente
+    public int NumeroDeConta { get; set; }
+    private decimal saldo;
+
+    // Método para realizar un retiro de la cuenta
+    public void Sacar(decimal valor)
+    {
+        if(saldo >= valor)
         {
-            Console.WriteLine($"Olá, meu nome sou o professor {Nome} de {Idade} anos. Salário: {Salario}.");
+            saldo -= valor;
+            Console.WriteLine($"Saque de {valor} realizado.");
         }
+        else
+        {
+            Console.WriteLine($"Sem saldo suficiente.");
+        }
+    }
+
+    // Método para mostrar el saldo actual
+    public void ExibirSaldo()
+    {
+        Console.WriteLine($"Saldo atual: {saldo}");  
+    }
+}
+
+```
+En esta clase, se modela una cuenta corriente con un número de cuenta y un saldo. Se implementan métodos para realizar retiros (`Sacar()`) y mostrar el saldo (`ExibirSaldo()`).
+
+
+# Doc Conta.cs Abstractas e Interfaces
+
+#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso
+
+La clase abstracta `Conta` proporciona un modelo básico para una cuenta bancaria. Define una propiedad `saldo` y un método abstracto `Creditar(decimal valor)`.
+
+```c#
+public abstract class Conta
+{
+    // Propiedad protegida para el saldo
+    protected decimal saldo;
+
+    // Método abstracto para acreditar dinero en la cuenta
+    public abstract void Creditar(decimal valor);
+
+    // Método para mostrar el saldo actual
+    public void ExibirSaldo()
+    {
+        Console.WriteLine($"O seu saldo é: {saldo}");
     }
 }
 ```
 
-#### Comentarios y Documentación
+#Doc Computador.cs Clases Abstractas e Interfaces
 
-El código incluye comentarios XML que proporcionan información sobre la clase, propiedades y métodos. Estos comentarios son útiles para generar documentación utilizando herramientas como Sandcastle o para proporcionar información contextual dentro del entorno de desarrollo integrado (IDE) durante el desarrollo del código.
+### Clase `Computador`
+
+La clase `Computador` sobrescribe el método `ToString()` para proporcionar una representación en forma de cadena del objeto.
+
+```c#
+public class Computador
+{
+    // Método ToString() sobreescrito
+    public override string ToString()
+    {
+        return "Metodo ToString sobreescrito";
+    }
+}
+```
+
+# Doc Calculadora.cs Clases Abstractas e Interfaces
+
+### Clase `Calculadora`
+
+La clase `Calculadora` implementa la interfaz `ICalculadora` y proporciona métodos para realizar operaciones matemáticas básicas.
+
+```c#
+public class Calculadora : ICalculadora
+{
+    // Implementación de los métodos de la interfaz ICalculadora
+    public int Somar(int num1, int num2)
+    {
+        return num1 + num2;
+    }
+
+    public int Somar(int num1, int num2, int num3)
+    {
+        return num1 + num2 + num3;
+    }
+
+    public int Subtrair(int num1, int num2)
+    {
+        return num1 - num2;
+    }
+
+    public int Multiplicar(int num1, int num2)
+    {
+        return num1 * num2;
+    }
+
+    public int Dividir(int num1, int num2)
+    {
+        return num1 / num2;
+    }
+}
+```
+# Doc Aluno.cs Clases Abstractas e Interfaces
+
+### Clase `Aluno`
+
+La clase `Aluno` representa un estudiante y hereda de la clase `Pessoa`. Contiene propiedades adicionales como `Nota` y `Email`.
+
+```c#
+public class Aluno : Pessoa
+{
+    // Constructor que llama al constructor de la clase base con un nombre
+    public Aluno(String nome) : base(nome)
+    {
+
+    }
+
+    // Constructor vacío adicional para instanciar sin pasar un nombre
+    public Aluno()
+    {
+
+    }
+
+    public double Nota { get; set; }
+    public string Email { get; set; }
+
+    // Método Apresentar() sobreescrito para mostrar información del alumno
+    public override void Apresentar()
+    {
+        Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos e sou um aluno nota {Nota}, meu email é {Email}.");
+    }
+}
+```
+
+
 
