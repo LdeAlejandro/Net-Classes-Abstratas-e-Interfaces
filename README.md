@@ -1,381 +1,168 @@
-
-#Doc Program.cs Manipulando Dados e Objetos
+# Doc Program.cs Herancia-Poliformismo
 
 ## Categorización y Documentación del Código
 
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que abarca diversos ejemplos de funcionalidades y conceptos en C#.
+En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra ejemplos de uso de herencia, polimorfismo y encapsulamiento en C#.
 
-## Deserialización JSON
+## Herencia y Polimorfismo
 
-### Descripción
-Este bloque de código se encarga de deserializar un archivo JSON llamado "vendasDeserialize.json", que contiene datos de ventas. Luego, muestra la información de cada venta en la consola.
+El código ejemplifica el uso de herencia y polimorfismo a través de las clases `Aluno` y `Professor`, las cuales heredan de una clase base común `Pessoa`.
 
-```c#
-using Newtonsoft.Json;
+# Código Documentado y Categorizado
 
-string jsonFile = File.ReadAllText("Arquivos/vendasDeserialize.json");
+## Introducción
 
-List<VendaDeserialize> listDeVendas = JsonConvert.DeserializeObject<List<VendaDeserialize>>(jsonFile);
+Este documento contiene ejemplos de código que ilustran conceptos de herencia, polimorfismo y encapsulamiento en C#. Las secciones incluyen el uso de herencia con clases `Aluno` y `Professor`, y encapsulamiento con la clase `ContaCorrente`.
 
-foreach (VendaDeserialize venda in listDeVendas)
-{
-    Console.WriteLine($"Venda:\n Id: {venda.Id} Product: {venda.ProductName} preço: {venda.Preco} hora da venda: {venda.dataDeVenda.ToString("dd/MM/yyy HH:mm")}");
-}
+## Código
+
+### Uso de Herencia y Polimorfismo
+
+El siguiente código demuestra el uso de herencia y polimorfismo creando instancias de `Aluno` y `Professor`, que heredan de la clase base `Pessoa`.
+
+```csharp
+using Heranca_polimorfismo.Models;
+
+//***********************************************************************
+// Herança e polimorfismo
+
+Aluno a1 = new Aluno();
+
+a1.Nome = "Juanito";
+a1.Idade = 17;
+a1.Nota = 10;
+a1.Email = "juanito@gmail.com";
+a1.Apresentar();
+
+Professor p1 = new Professor();
+
+p1.Nome = "Eduardo";
+p1.Idade = 30;
+p1.Salario = 1000;
+p1.Apresentar();
+
 ```
 
+**Respuesta esperada:**
 
-### Funcionalidad
-
-1. Lee el archivo JSON.
-2. Deserializa su contenido en una lista de objetos `VendaDeserialize`.
-3. Muestra la información de cada venta, incluyendo ID, nombre del producto, precio y hora de la venta.
-
-## Ejemplos de Funcionalidades y Conceptos
-
-### Desestructuración
-
-Este ejemplo muestra cómo se puede utilizar la desestructuración para extraer valores de un objeto en variables individuales.
-
-```c#
-// Ejemplo de desestructuración
-Pessoa p1 = new Pessoa("Alejandro", "Garcia");
-(string nome, string sobrenome) = p1;
-Console.WriteLine($"{nome} {sobrenome}");
+```text
+Olá, meu nome é Juanito e tenho 17 anos e sou um aluno nota 10, meu email é juanito@gmail.com.
+Olá, meu nome sou o professor Eduardo de 30 anos. salario: 1000.
 ```
 
+### Encapsulamiento
 
-### Operador Ternario
-
-Ilustra el uso del operador ternario para tomar decisiones basadas en una condición.
+El siguiente código muestra el uso del encapsulamiento con la clase `ContaCorrente`, que permite manejar operaciones bancarias básicas.
 
 ```c#
-// Ejemplo de operador ternario
-int numero = 10;
-bool esPar = numero % 2 == 0;
-Console.WriteLine($"El número {numero} es " + (esPar ? "par" : "impar"));
+//***********************************************************************
+Encapsulamento
+ContaCorrente c1 = new ContaCorrente(12312312, 1000);
+
+c1.ExibirSaldo();
+c1.Sacar(350);
+c1.ExibirSaldo();
+
 ```
 
-### Tuplas
+**Respuesta esperada:**
 
-Proporciona ejemplos de diferentes formas de declarar y utilizar tuplas en C#, tanto accediendo a los elementos por posición como por nombre de variable.
-
-```c#
-// Ejemplo de tuplas
-(int id, string Nome, string Sobre, decimal Altura) tupla = (1, "Alejandro", "Garcia", 1.83M);
-Console.WriteLine($"Id: {tupla.id}, Nome: {tupla.Nome}, Sobrenome: {tupla.Sobre}, Altura: {tupla.Altura}");
 ```
-
-### Diccionarios
-
-Muestra cómo trabajar con diccionarios en C#, incluyendo agregar, eliminar y modificar elementos, así como verificar la existencia de una clave específica.
-
-```c#
-// Ejemplo de diccionarios
-Dictionary<string, string> estados = new Dictionary<string, string>();
-estados.Add("SP", "São Paulo");
-estados.Add("MG", "Minas Gerais");
-Console.WriteLine($"Estado de SP: {estados["SP"]}");
+Saldo atual: 1000
+Saque de 350 realizado.
+Saldo atual: 650
 ```
+### Clase Base `Pessoa`
 
-
-### Pilas (Stack) y Colas (Queue)
-
-Este bloque presenta cómo trabajar con pilas (LIFO) y colas (FIFO) en C# utilizando las clases `Stack` y `Queue`.
+Este código muestra la creación y uso de la clase `Pessoa`, la cual es utilizada como clase base para `Aluno` y `Professor`.
 
 ```c#
-// Ejemplo de pila (Stack)
-Stack<int> pila = new Stack<int>();
-pila.Push(1);
-int elemento = pila.Pop();
-Console.WriteLine($"Elemento desapilado: {elemento}");
+//***********************************************************************
+Pessoa p1 = new Pessoa();
+p1.Nome = "Alejandro";
+p1.Idade = 29;
 
-// Ejemplo de cola (Queue)
-Queue<int> cola = new Queue<int>();
-cola.Enqueue(1);
-int elemento = cola.Dequeue();
-Console.WriteLine($"Elemento desencolado: {elemento}");
-```
-
-### Manejo de Excepciones
-
-Muestra cómo manejar excepciones en C# utilizando bloques `try`, `catch` y `finally`, y cómo especificar diferentes tipos de excepciones para manejar.
-
-```c#
-// Ejemplo de manejo de excepciones
-try
-{
-    string[] linhas = File.ReadAllLines("Arquivos/arquivoLeitura.txt");
-    foreach (string linha in linhas)
-    {
-        Console.WriteLine(linha);
-    }
-}
-catch (FileNotFoundException ex)
-{
-    Console.WriteLine($"Error: {ex.Message}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Error genérico: {ex.Message}");
-}
-finally
-{
-    Console.WriteLine("Operación finalizada");
-}
-```
-
-### Otros Ejemplos
-
-Incluye ejemplos adicionales, como conversión de fechas, formatos de números y cadenas, y llamadas a métodos de otras clases.
-
-```c#
-// Ejemplo de formateo de fecha y hora
-DateTime fecha = DateTime.Now;
-Console.WriteLine($"Fecha actual: {fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
-
-// Ejemplo de formateo de números
-decimal valorMonetario = 82.40M;
-Console.WriteLine($"Valor monetario: {valorMonetario:C2}");
-
-// Ejemplo de llamada a método de otra clase
-Pessoa p1 = new Pessoa("Alejandro", "Garcia");
 p1.Apresentar();
 ```
 
-Este documento proporciona una descripción detallada de cada bloque de código, categorizando y documentando sus funcionalidades y conceptos asociados. Es útil para comprender y aplicar estos conceptos en proyectos de desarrollo en C#.
+**Respuesta esperada:**
 
-Este documento incluye el código proporcionado, categorizado y documentado según su funcionalidad y conceptos asociados. Puede ser utilizado como referencia para entender y aplicar estos conceptos en proyectos de desarrollo en C#.
+```
+Olá, meu nome é Alejandro e tenho 29 anos.
+```
 
-#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso
-
-# Doc Curso.cs Manipulando Dados e Objetos
-
-## Categorización y Documentación del Código
-
-
-## Clase Curso
-
-### Descripción
-La clase `Curso` representa un curso y contiene propiedades y métodos relacionados con la gestión de alumnos en el curso.
-
-### Propiedades
-
-- **Nome**: Representa el nombre del curso.
-- **Alunos**: Lista de objetos `Pessoa` que representan los alumnos matriculados en el curso.
-
-### Métodos
-
-- **AdicionarAluno**: Agrega un nuevo alumno a la lista de alumnos matriculados en el curso.
-- **ObterQuantidadeDeAlunosMatriculados**: Retorna la cantidad de alumnos matriculados en el curso.
-- **RemoverAluno**: Elimina un alumno de la lista de alumnos matriculados en el curso.
-- **ListarAlunos**: Muestra en la consola la lista de alumnos matriculados en el curso.
-
-## Ejemplos de Funcionalidades y Conceptos
-
-El código proporcionado muestra ejemplos de cómo trabajar con clases, propiedades, métodos, bucles `for` y `foreach`, y formatos de cadena en C#. También muestra cómo interactuar con objetos de otras clases, en este caso, la clase `Pessoa`.
-
-Este documento proporciona una descripción detallada de la clase `Curso` y sus funcionalidades asociadas, facilitando la comprensión y aplicación de estos conceptos en proyectos de desarrollo en C#.
+Código completo:
 
 ```c#
-using System;
-using System.Collections.Generic;
+﻿using Heranca_polimorfismo.Models;
 
-namespace Curso_Net_2.Models
-{
-    public class Curso
-    {
-        public string Nome { get; set; }
-        public List<Pessoa> Alunos { get; set; }
 
-        public void AdicionarAluno(Pessoa aluno)
-        {
-            Alunos.Add(aluno);
-        }
 
-        public int ObterQuantidadeDeAlunosMatriculados()
-        {
-            return Alunos.Count;
-        }
+//***********************************************************************
+//Herança e polimorfismo
 
-        public bool RemoverAluno(Pessoa aluno)
-        {
-            return Alunos.Remove(aluno);
-        }
+Aluno a1 = new Aluno();
 
-        public void ListarAlunos()
-        {
-            Console.WriteLine($"Alunos do curso de: {Nome}");
+a1.Nome = "Juanito";
+a1.Idade = 17;
+a1.Nota = 10;
+a1.Email = "juanito@gmail.com";
+a1.Apresentar();
 
-            for(int i = 0; i < Alunos.Count; i++)
-            {
-                int numeroDeAluno = i + 1;
-                string text = $"Aluno Nr {numeroDeAluno:D2}. - {Alunos[i].NomeCompleto}";
-                Console.WriteLine(text);
-            }
+Professor p1 = new Professor();
 
-            Console.WriteLine("*******************************************************");
+p1.Nome = "Eduardo";
+p1.Idade = 30;
+p1.Salario = 1000;
+p1.Apresentar();
 
-            foreach(Pessoa aluno in Alunos)
-            {
-                int numeroDeAluno = Alunos.IndexOf(aluno) + 1;
-                string text = $"Aluno Nr {numeroDeAluno:D2}. - {aluno.NomeCompleto}";
-                Console.WriteLine(text);
-            }
-        }
-    }
-}
+//***********************************************************************
+//encapsulamiente
+// ContaCorrente c1 = new ContaCorrente(12312312, 1000);
+
+// c1.ExibirSaldo();
+// c1.Sacar(350);
+// c1.ExibirSaldo();
+//***********************************************************************
+// Pessoa p1 = new Pessoa();
+// p1.Nome = "Alejandro";
+// p1.Idade = 29;
+
+// p1.Apresentar();
 ```
+## Conclusión
 
-# Doc ExemploExcecao.cs Manipulando Dados e Objetos
-
-## Categorización y Documentación del Código
-
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de manejo de excepciones en C#.
-
-## Clase ExemploExcecao
-
-### Descripción
-La clase `ExemploExcecao` contiene una serie de métodos que se llaman entre sí y generan y manejan una excepción.
-
-```csharp
-using System;
-
-namespace Curso_Net_2.Models
-{
-    public class ExemploExcecao
-    {
-        public void Metodo1()
-        {
-            try
-            {
-                Metodo2();
-                Console.WriteLine("Try");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Catch");
-                Console.WriteLine("Excepción tratada:\n" + ex.StackTrace);
-            }
-        }
-
-        public void Metodo2()
-        {
-            Metodo3();
-        }
-
-        public void Metodo3()
-        {
-            Metodo4();
-        }
-
-        public void Metodo4()
-        {
-            throw new Exception("Ocurrió una excepción");
-        }
-    }
-}
-```
-
-### Métodos
-
-- **Metodo1**: Este método llama a `Metodo2` dentro de un bloque `try-catch`. Si se produce una excepción en alguno de los métodos llamados, se captura en el bloque `catch` y se imprime el stack trace de la excepción.
-- **Metodo2**: Llama al método `Metodo3`.
-- **Metodo3**: Llama al método `Metodo4`.
-- **Metodo4**: Genera una excepción de tipo `Exception` con un mensaje específico.
+El código presentado ilustra conceptos fundamentales de herencia, polimorfismo y encapsulamiento en C#. Las secciones están categorizadas para facilitar su comprensión y aplicación en proyectos de programación orientada a objetos.
 
 
-# Doc LeituraArquivo.cs Manipulando Dados e Objetos
+## Notas Adicionales
 
-## Categorización y Documentación del Código
+- **Herencia y Polimorfismo**: Se demuestra cómo las clases `Aluno` y `Professor` heredan propiedades y métodos de la clase `Pessoa`, y cómo se puede sobrescribir el método `Apresentar` para incluir información específica de cada clase derivada.
+- **Encapsulamiento**: Se muestra cómo encapsular datos y operaciones dentro de la clase `ContaCorrente`, asegurando que el saldo de la cuenta no pueda ser modificado directamente desde fuera de la clase.
+- **Uso de la Clase Base `Pessoa`**: Se incluye un ejemplo básico de cómo crear e interactuar con una instancia de la clase `Pessoa`.
 
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de lectura de archivos y retorno de tuplas en C#.
+Este formato documentado y categorizado proporciona una referencia clara y estructurada de los conceptos y su implementación en C#.
 
-## Clase LeituraArquivo
+# Doc Pessoa.cs Herancia-Poliformismo
 
-### Descripción
-La clase `LeituraArquivo` contiene un método que lee el contenido de un archivo y devuelve una tupla con el resultado de la operación, las líneas leídas y el número total de líneas.
+### Información y Categorización del Código
 
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+#### Descripción General
 
-namespace Curso_Net_2.Models
-{
-    public class LeituraArquivo
-    {
-        // Método para retornar tuplas
-        public (bool sucessfullRead, string[] textInLine, int totalLines) readFile(string filePath)
-        {
-            try
-            {
-                string[] lines = File.ReadAllLines(filePath);
-                return (true, lines, lines.Count());
-            }
-            catch (Exception)
-            {
-                return (false, new string[0], 0);
-            }
-        }
-    }
-}
-```
+El código proporcionado define una clase llamada `Pessoa` en el espacio de nombres `Heranca_polimorfismo.Models`. Esta clase modela una entidad genérica de una persona, con propiedades para el nombre y la edad, así como un método virtual para presentar a la persona.
 
-### Métodos
+#### Definición de la Clase `Pessoa`
 
-- **readFile**
-    - **Descripción**: Este método intenta leer todas las líneas de un archivo especificado por la ruta `filePath`. Devuelve una tupla con tres elementos:
-        - **sucessfullRead** (`bool`): Indica si la lectura del archivo fue exitosa (`true`) o no (`false`).
-        - **textInLine** (`string[]`): Un array de strings con las líneas leídas del archivo. Si la lectura falla, este array estará vacío.
-        - **totalLines** (`int`): El número total de líneas leídas. Si la lectura falla, este valor será `0`.
-    - **Parámetros**:
-        - `filePath` (`string`): La ruta del archivo a leer.
-    - **Retorno**: Una tupla (`bool`, `string[]`, `int`) que indica el resultado de la lectura del archivo.
+La clase `Pessoa` tiene las siguientes características:
 
-
-### Ejemplo de Uso
-
-```c#
-using Curso_Net_2.Models;
-
-class Program
-{
-    static void Main()
-    {
-        LeituraArquivo leituraArquivo = new LeituraArquivo();
-        var (sucessfullRead, lines, totalLines) = leituraArquivo.readFile("ruta/del/archivo.txt");
-
-        if (sucessfullRead)
-        {
-            Console.WriteLine($"Total de líneas: {totalLines}");
-            foreach (var line in lines)
-            {
-                Console.WriteLine(line);
-            }
-        }
-        else
-        {
-            Console.WriteLine("No se pudo leer el archivo.");
-        }
-    }
-}
-
-```
-
-Este documento proporciona una descripción detallada del método `readFile` en la clase `LeituraArquivo`, facilitando la comprensión y aplicación del manejo de lectura de archivos y retorno de tuplas en proyectos de desarrollo en C#.
-
-
-# Doc Pessoa.cs Manipulando Dados e Objetos
-
-## Categorización y Documentación del Código
-
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `Pessoa` en C# con diversas funcionalidades incluyendo constructores, destructores, propiedades y métodos.
-
-## Clase Pessoa
-
-### Descripción
-La clase `Pessoa` representa una persona con propiedades de nombre, apellido y edad. También incluye métodos para presentar la información de la persona y un destructor para obtener las propiedades por separado.
+- **Propiedades**:
+    
+    - `Nome`: Propiedad que almacena el nombre de la persona (tipo `string`).
+    - `Idade`: Propiedad que almacena la edad de la persona (tipo `int`).
+- **Métodos**:
+    
+    - `Apresentar()`: Método virtual que imprime un saludo con el nombre y la edad de la persona. El saludo está formateado con el nombre y la edad de la persona. Este método puede ser sobrescrito por clases derivadas para proporcionar un saludo personalizado.
+- **Modificador `virtual`**: El método `Apresentar()` se declara con el modificador `virtual`, lo que indica que puede ser sobrescrito por clases derivadas utilizando el mecanismo de polimorfismo.
 
 ```c#
 using System;
@@ -383,331 +170,190 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Curso_Net_2.Models
+namespace Heranca_polimorfismo.Models
 {
     public class Pessoa
     {
-        public Pessoa()
+        public string Nome { get; set; }
+        public int Idade { get; set; }
+
+
+        // com virtual indicamos que este metodo pode ser alterado com polimorfismo
+        public virtual void Apresentar()
         {
-        }
-
-        // Exemplo de constructor
-        public Pessoa(string nome, string sobrenome)
-        {
-            Nome = nome;
-            Sobrenome = sobrenome;
-        }
-
-        // Exemplo de destructor, a declaração da variáveis é inversa e tem os parâmetros out
-        public void Deconstruct(out string nome, out string sobrenome)
-        {
-            nome = Nome;
-            sobrenome = Sobrenome;
-        }
-
-        private string _nome;
-        private int _idade;
-
-        public string Nome
-        {
-            // Usando expressão lambda para get
-            get => _nome.ToUpper();
-
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("O nome não pode ser vazio");
-                }
-                _nome = value;
-            }
-        }
-
-        public string Sobrenome { get; set; }
-
-        public int Idade
-        {
-            get => _idade;
-
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("A idade não pode ser menor ou igual a zero");
-                }
-                _idade = value;
-            }
-        }
-
-        public string NomeCompleto => $"{Nome} {Sobrenome}".ToUpper();
-
-        public void Apresentar()
-        {
-            Console.WriteLine($"Nome: {NomeCompleto}, Idade: {Idade}");
+            Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos.");
         }
     }
 }
 ```
-
-
-### Propiedades
-
-- **Nome** (`string`)
     
-    - **Descripción**: Nombre de la persona. No puede ser una cadena vacía.
-    - **Getter**: Devuelve el nombre en mayúsculas.
-    - **Setter**: Establece el nombre. Si es una cadena vacía, lanza una excepción `ArgumentException`.
-- **Sobrenome** (`string`)
-    
-    - **Descripción**: Apellido de la persona. Se establece y se obtiene directamente.
-- **Idade** (`int`)
-    
-    - **Descripción**: Edad de la persona. Debe ser mayor que 0.
-    - **Getter**: Devuelve la edad.
-    - **Setter**: Establece la edad. Si es menor o igual a 0, lanza una excepción `ArgumentException`.
-- **NomeCompleto** (`string`)
-    
-    - **Descripción**: Devuelve el nombre completo (nombre y apellido) en mayúsculas.
 
-### Métodos
+#### Comentarios y Documentación
 
-- **Pessoa()**
-    
-    - **Descripción**: Constructor por defecto.
-- **Pessoa(string nome, string sobrenome)**
-    
-    - **Descripción**: Constructor que inicializa las propiedades `Nome` y `Sobrenome`.
-    - **Parámetros**:
-        - `nome` (`string`): El nombre de la persona.
-        - `sobrenome` (`string`): El apellido de la persona.
-- **Deconstruct(out string nome, out string sobrenome)**
-    
-    - **Descripción**: Destructor que devuelve el nombre y el apellido como variables separadas.
-    - **Parámetros**:
-        - `nome` (`string`): Variable de salida que contendrá el nombre.
-        - `sobrenome` (`string`): Variable de salida que contendrá el apellido.
-- **Apresentar()**
-    
-    - **Descripción**: Imprime el nombre completo y la edad de la persona en la consola.
+El código proporcionado no incluye comentarios o documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
 
-- 
+# Doc Aluno.cs Herancia-Poliformismo
 
-### Ejemplo de Uso
+#### Descripción General
 
+El código proporcionado define una clase llamada `Aluno` que hereda de la clase base `Pessoa` en el espacio de nombres `Heranca_polimorfismo.Models`. Esta clase modela un estudiante y extiende las funcionalidades de la clase base al agregar propiedades específicas para la nota y el correo electrónico del estudiante, así como una implementación sobrescrita del método `Apresentar()`.
+
+#### Definición de la Clase `Aluno`
+
+La clase `Aluno` tiene las siguientes características:
+
+- **Hereda de `Pessoa`**: La clase `Aluno` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
+    
+- **Propiedades Adicionales**:
+    
+    - `Nota`: Propiedad que almacena la nota del estudiante (tipo `double`).
+    - `Email`: Propiedad que almacena el correo electrónico del estudiante (tipo `string`).
+- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los estudiantes. La implementación sobrescrita agrega información sobre la nota y el correo electrónico del estudiante.
+    
 ```c#
-using Curso_Net_2.Models;
-
-class Program
-{
-    static void Main()
-    {
-        // Usando constructor con parámetros
-        Pessoa p1 = new Pessoa("Alejandro", "Garcia");
-        p1.Idade = 30;
-
-        // Presentar los detalles de la persona
-        p1.Apresentar();
-
-        // Usando el destructor
-        (string nome, string sobrenome) = p1;
-        Console.WriteLine($"Nome: {nome}, Sobrenome: {sobrenome}");
-
-        // Usando el constructor por defecto y estableciendo propiedades después
-        Pessoa p2 = new Pessoa();
-        p2.Nome = "Letzalet";
-        p2.Sobrenome = "Amoroso";
-        p2.Idade = 25;
-
-        // Presentar los detalles de la segunda persona
-        p2.Apresentar();
-    }
-}
-```
-
-Este documento proporciona una descripción detallada de la clase `Pessoa`, sus propiedades y métodos, facilitando la comprensión y aplicación del manejo de objetos de persona en proyectos de desarrollo en C#.
-
-#Doc Venda.cs Manipulando Dados e Objetos
-
-## Categorización y Documentación del Código
-
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `Venda` en C# con sus respectivas propiedades y constructor.
-
-## Clase Venda
-
-### Descripción
-La clase `Venda` representa una venta con propiedades de identificación, nombre del producto, precio y fecha de venta. También incluye un constructor para inicializar estas propiedades.
-
-```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Curso_Net_2.Models
+namespace Heranca_polimorfismo.Models
 {
-    public class Venda
+    public class Aluno : Pessoa
     {
-        public Venda(int id, string produto, decimal preco, DateTime datadevenda)
+        public double Nota { get; set; }
+        public string Email { get; set; }
+
+        public override void Apresentar()
         {
-            Id = id;
-            ProductName = produto;
-            Preco = preco;
-            dataDeVenda = datadevenda;
+            Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos e sou um aluno nota {Nota}, meu email é {Email}.");
         }
 
-        public int Id { get; set; }
-        public string ProductName { get; set; }
-        public decimal Preco { get; set; }
-        public DateTime dataDeVenda { get; set; }
     }
 }
 ```
+#### Comentarios y Documentación
 
+El código proporcionado no incluye comentarios o documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
 
-### Propiedades
+# Doc ContaCorrente.cs Herancia-Poliformismo
 
-- **Id** (`int`)
+### Información y Categorización del Código
+
+#### Descripción General
+
+El código define una clase llamada `Professor` en el espacio de nombres `Heranca_polimorfismo.Models`, que representa a un profesor y hereda de la clase base `Pessoa`. La clase proporciona una propiedad adicional para el salario del profesor y sobrescribe el método `Apresentar()` para proporcionar una presentación personalizada para los profesores.
+
+#### Definición de la Clase `Professor`
+
+La clase `Professor` tiene las siguientes características:
+
+- **Hereda de `Pessoa`**: La clase `Professor` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
     
-    - **Descripción**: Identificación única de la venta.
-    - **Getter/Setter**: Obtiene o establece el identificador de la venta.
-- **ProductName** (`string`)
+- **Propiedad Adicional**:
     
-    - **Descripción**: Nombre del producto vendido.
-    - **Getter/Setter**: Obtiene o establece el nombre del producto.
-- **Preco** (`decimal`)
-    
-    - **Descripción**: Precio del producto vendido.
-    - **Getter/Setter**: Obtiene o establece el precio del producto.
-- **dataDeVenda** (`DateTime`)
-    
-    - **Descripción**: Fecha y hora de la venta.
-    - **Getter/Setter**: Obtiene o establece la fecha y hora de la venta.
-
-### Constructor
-
-- **Venda(int id, string produto, decimal preco, DateTime datadevenda)**
-    - **Descripción**: Constructor que inicializa las propiedades `Id`, `ProductName`, `Preco` y `dataDeVenda`.
-    - **Parámetros**:
-        - `id` (`int`): Identificación de la venta.
-        - `produto` (`string`): Nombre del producto vendido.
-        - `preco` (`decimal`): Precio del producto vendido.
-        - `datadevenda` (`DateTime`): Fecha y hora de la venta.
-
-### Ejemplo de Uso.
+    - `Salario`: Propiedad que almacena el salario del profesor (tipo `decimal`).
+- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los profesores. La implementación sobrescrita agrega información sobre el salario del profesor.
 
 ```c#
-
-using Curso_Net_2.Models;
-
-class Program
-{
-    static void Main()
-    {
-        // Crear una nueva venta
-        Venda venda1 = new Venda(1, "Laptop", 1500.00M, DateTime.Now);
-
-        // Mostrar detalles de la venta
-        Console.WriteLine($"ID: {venda1.Id}");
-        Console.WriteLine($"Producto: {venda1.ProductName}");
-        Console.WriteLine($"Precio: {venda1.Preco:C}");
-        Console.WriteLine($"Fecha de Venta: {venda1.dataDeVenda}");
-
-        // Crear otra venta
-        Venda venda2 = new Venda(2, "Smartphone", 800.00M, DateTime.Now.AddDays(-1));
-
-        // Mostrar detalles de la segunda venta
-        Console.WriteLine($"\nID: {venda2.Id}");
-        Console.WriteLine($"Producto: {venda2.ProductName}");
-        Console.WriteLine($"Precio: {venda2.Preco:C}");
-        Console.WriteLine($"Fecha de Venta: {venda2.dataDeVenda}");
-    }
-}
-
-```
-
-# Doc VendaDeserialize.cs Manipulando Dados e Objetos
-
-## Categorización y Documentación del Código
-
-En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `VendaDeserialize` en C# con sus respectivas propiedades y configuración para la deserialización de JSON usando el paquete `Newtonsoft.Json`.
-
-## Clase VendaDeserialize
-
-### Descripción
-La clase `VendaDeserialize` representa una venta deserializada de un archivo JSON, con propiedades para la identificación, nombre del producto, precio y fecha de venta. Usa el atributo `JsonProperty` para mapear las propiedades JSON a las propiedades de la clase.
-
-```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
-namespace Curso_Net_2.Models
+namespace Heranca_polimorfismo.Models
 {
-    public class VendaDeserialize
+    public class ContaCorrente
     {
-        public int Id { get; set; }
+        public ContaCorrente(int numeroDeConta, decimal saldoInicial)
+        {
+            NumeroDeConta = numeroDeConta;
+            saldo = saldoInicial;
+        }
+        public int NumeroDeConta { get; set; }
 
-        // Como o arquivo vendasDeserialize.json tem o nome da variável Product_Name diferente de ProductName
-        // na declaração deste arquivo, com o pacote Newtonsoft.Json, podemos fazer a seguinte declaração
-        // para que a variável ProductName receba o valor da variável Product_Name no JSON.
-        [JsonProperty("Product_Name")]
-        public string ProductName { get; set; }
-        public decimal Preco { get; set; }
-        public DateTime dataDeVenda { get; set; }
+        private decimal saldo;
+
+        public void Sacar(decimal valor)
+        {
+            if(saldo >= valor)
+            {
+                saldo -= valor;
+                Console.WriteLine($"Saque de {valor} realizado.");
+            }
+            else
+            {
+                Console.WriteLine($"Sem saldo suficiente.");
+            }
+        }
+
+        
+            public void ExibirSaldo()
+            {
+              Console.WriteLine($"Saldo atual: {saldo}");  
+            }
+            
+
+
     }
 }
 ```
 
-### Propiedades
 
-- **Id** (`int`)
-    
-    - **Descripción**: Identificación única de la venta.
-    - **Getter/Setter**: Obtiene o establece el identificador de la venta.
-- **ProductName** (`string`)
-    
-    - **Descripción**: Nombre del producto vendido, mapeado desde el nombre de propiedad `Product_Name` en el JSON.
-    - **Getter/Setter**: Obtiene o establece el nombre del producto.
-    - **Atributo**: `[JsonProperty("Product_Name")]` indica que esta propiedad se deserializa desde la propiedad `Product_Name` del JSON.
-- **Preco** (`decimal`)
-    
-    - **Descripción**: Precio del producto vendido.
-    - **Getter/Setter**: Obtiene o establece el precio del producto.
-- **dataDeVenda** (`DateTime`)
-    
-    - **Descripción**: Fecha y hora de la venta.
-    - **Getter/Setter**: Obtiene o establece la fecha y hora de la venta.
+#### Comentarios y Documentación
 
-### Ejemplo de Uso
+El código proporcionado no incluye comentarios ni documentación específica. Sería útil agregar comentarios para explicar el propósito de la clase y los miembros, así como para proporcionar información sobre el uso y el comportamiento esperado de la clase.
 
-Este ejemplo muestra cómo deserializar un archivo JSON en una lista de objetos `VendaDeserialize` y cómo acceder a sus propiedades.
+# Doc Professor.cs Herancia-Poliformismo
+
+
+### Información y Categorización del Código
+
+#### Descripción General
+
+El código define una clase llamada `Professor` en el espacio de nombres `Heranca_polimorfismo.Models`, que representa a un profesor y hereda de la clase base `Pessoa`. La clase proporciona una propiedad adicional para el salario del profesor y sobrescribe el método `Apresentar()` para proporcionar una presentación personalizada para los profesores.
+
+#### Definición de la Clase `Professor`
+
+La clase `Professor` tiene las siguientes características:
+
+- **Hereda de `Pessoa`**: La clase `Professor` hereda de la clase base `Pessoa`, lo que significa que adquiere todas las propiedades y métodos de la clase base.
+    
+- **Propiedad Adicional**:
+    
+    - `Salario`: Propiedad que almacena el salario del profesor (tipo `decimal`).
+- **Método `Apresentar()` Sobrescrito**: Se sobrescribe el método `Apresentar()` de la clase base para proporcionar una presentación personalizada para los profesores. La implementación sobrescrita agrega información sobre el salario del profesor.
 
 ```c#
 using System;
 using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
-using Curso_Net_2.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using Heranca_polimorfismo.Models;
 
-class Program
+namespace Heranca_polimorfismo.Models
 {
-    static void Main()
+    /// <summary>
+    /// Representa um professor que herda as características da classe Pessoa.
+    /// </summary>
+    public class Professor : Pessoa
     {
-        // Leer el contenido del archivo JSON
-        string jsonFile = File.ReadAllText("Arquivos/vendasDeserialize.json");
+        /// <summary>
+        /// Obtém ou define o salário do professor.
+        /// </summary>
+        public decimal Salario { get; set; }
 
-        // Deserializar el contenido del archivo JSON en una lista de objetos VendaDeserialize
-        List<VendaDeserialize> listDeVendas = JsonConvert.DeserializeObject<List<VendaDeserialize>>(jsonFile);
-
-        // Iterar sobre la lista de ventas y mostrar sus detalles
-        foreach (VendaDeserialize venda in listDeVendas)
+        /// <summary>
+        /// Sobrescreve o método Apresentar() da classe base Pessoa para fornecer uma apresentação personalizada para professores.
+        /// </summary>
+        public override void Apresentar()
         {
-            Console.WriteLine($"Venda:\n Id: {venda.Id} Producto: {venda.ProductName} Precio: {venda.Preco} Fecha de Venta: {venda.dataDeVenda.ToString("dd/MM/yyyy HH:mm")}");
+            Console.WriteLine($"Olá, meu nome sou o professor {Nome} de {Idade} anos. Salário: {Salario}.");
         }
     }
 }
 ```
 
-Este documento proporciona una descripción detallada de la clase `VendaDeserialize`, sus propiedades y la configuración necesaria para deserializar objetos desde un archivo JSON utilizando el paquete `Newtonsoft.Json`.
+#### Comentarios y Documentación
+
+El código incluye comentarios XML que proporcionan información sobre la clase, propiedades y métodos. Estos comentarios son útiles para generar documentación utilizando herramientas como Sandcastle o para proporcionar información contextual dentro del entorno de desarrollo integrado (IDE) durante el desarrollo del código.
+
