@@ -228,7 +228,7 @@ namespace Curso_Net_2.Models
 
 # Doc ExemploExcecao.cs Manipulando Dados e Objetos
 
-# Categorización y Documentación del Código
+## Categorización y Documentación del Código
 
 En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de manejo de excepciones en C#.
 
@@ -286,11 +286,7 @@ namespace Curso_Net_2.Models
 
 # Doc LeituraArquivo.cs Manipulando Dados e Objetos
 
-
-#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso
-
-[[Doc Program.cs Manipulando Dados e Objetos]]
-# Categorización y Documentación del Código
+## Categorización y Documentación del Código
 
 En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de lectura de archivos y retorno de tuplas en C#.
 
@@ -372,11 +368,7 @@ Este documento proporciona una descripción detallada del método `readFile` en 
 
 # Doc Pessoa.cs Manipulando Dados e Objetos
 
-
-#net #netfundamentos #Dio #Doc #programming #bootcamp #bootcampAvanade #avanade #curso
-
-[[Doc Program.cs Manipulando Dados e Objetos]]
-# Categorización y Documentación del Código
+## Categorización y Documentación del Código
 
 En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `Pessoa` en C# con diversas funcionalidades incluyendo constructores, destructores, propiedades y métodos.
 
@@ -534,3 +526,188 @@ class Program
 
 Este documento proporciona una descripción detallada de la clase `Pessoa`, sus propiedades y métodos, facilitando la comprensión y aplicación del manejo de objetos de persona en proyectos de desarrollo en C#.
 
+#Doc Venda.cs Manipulando Dados e Objetos
+
+## Categorización y Documentación del Código
+
+En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `Venda` en C# con sus respectivas propiedades y constructor.
+
+## Clase Venda
+
+### Descripción
+La clase `Venda` representa una venta con propiedades de identificación, nombre del producto, precio y fecha de venta. También incluye un constructor para inicializar estas propiedades.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Curso_Net_2.Models
+{
+    public class Venda
+    {
+        public Venda(int id, string produto, decimal preco, DateTime datadevenda)
+        {
+            Id = id;
+            ProductName = produto;
+            Preco = preco;
+            dataDeVenda = datadevenda;
+        }
+
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public decimal Preco { get; set; }
+        public DateTime dataDeVenda { get; set; }
+    }
+}
+```
+
+
+### Propiedades
+
+- **Id** (`int`)
+    
+    - **Descripción**: Identificación única de la venta.
+    - **Getter/Setter**: Obtiene o establece el identificador de la venta.
+- **ProductName** (`string`)
+    
+    - **Descripción**: Nombre del producto vendido.
+    - **Getter/Setter**: Obtiene o establece el nombre del producto.
+- **Preco** (`decimal`)
+    
+    - **Descripción**: Precio del producto vendido.
+    - **Getter/Setter**: Obtiene o establece el precio del producto.
+- **dataDeVenda** (`DateTime`)
+    
+    - **Descripción**: Fecha y hora de la venta.
+    - **Getter/Setter**: Obtiene o establece la fecha y hora de la venta.
+
+### Constructor
+
+- **Venda(int id, string produto, decimal preco, DateTime datadevenda)**
+    - **Descripción**: Constructor que inicializa las propiedades `Id`, `ProductName`, `Preco` y `dataDeVenda`.
+    - **Parámetros**:
+        - `id` (`int`): Identificación de la venta.
+        - `produto` (`string`): Nombre del producto vendido.
+        - `preco` (`decimal`): Precio del producto vendido.
+        - `datadevenda` (`DateTime`): Fecha y hora de la venta.
+
+### Ejemplo de Uso.
+
+```c#
+
+using Curso_Net_2.Models;
+
+class Program
+{
+    static void Main()
+    {
+        // Crear una nueva venta
+        Venda venda1 = new Venda(1, "Laptop", 1500.00M, DateTime.Now);
+
+        // Mostrar detalles de la venta
+        Console.WriteLine($"ID: {venda1.Id}");
+        Console.WriteLine($"Producto: {venda1.ProductName}");
+        Console.WriteLine($"Precio: {venda1.Preco:C}");
+        Console.WriteLine($"Fecha de Venta: {venda1.dataDeVenda}");
+
+        // Crear otra venta
+        Venda venda2 = new Venda(2, "Smartphone", 800.00M, DateTime.Now.AddDays(-1));
+
+        // Mostrar detalles de la segunda venta
+        Console.WriteLine($"\nID: {venda2.Id}");
+        Console.WriteLine($"Producto: {venda2.ProductName}");
+        Console.WriteLine($"Precio: {venda2.Preco:C}");
+        Console.WriteLine($"Fecha de Venta: {venda2.dataDeVenda}");
+    }
+}
+
+```
+
+# Doc VendaDeserialize.cs Manipulando Dados e Objetos
+
+## Categorización y Documentación del Código
+
+En este documento se presenta una categorización y documentación detallada del código proporcionado, que muestra un ejemplo de una clase `VendaDeserialize` en C# con sus respectivas propiedades y configuración para la deserialización de JSON usando el paquete `Newtonsoft.Json`.
+
+## Clase VendaDeserialize
+
+### Descripción
+La clase `VendaDeserialize` representa una venta deserializada de un archivo JSON, con propiedades para la identificación, nombre del producto, precio y fecha de venta. Usa el atributo `JsonProperty` para mapear las propiedades JSON a las propiedades de la clase.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace Curso_Net_2.Models
+{
+    public class VendaDeserialize
+    {
+        public int Id { get; set; }
+
+        // Como o arquivo vendasDeserialize.json tem o nome da variável Product_Name diferente de ProductName
+        // na declaração deste arquivo, com o pacote Newtonsoft.Json, podemos fazer a seguinte declaração
+        // para que a variável ProductName receba o valor da variável Product_Name no JSON.
+        [JsonProperty("Product_Name")]
+        public string ProductName { get; set; }
+        public decimal Preco { get; set; }
+        public DateTime dataDeVenda { get; set; }
+    }
+}
+```
+
+### Propiedades
+
+- **Id** (`int`)
+    
+    - **Descripción**: Identificación única de la venta.
+    - **Getter/Setter**: Obtiene o establece el identificador de la venta.
+- **ProductName** (`string`)
+    
+    - **Descripción**: Nombre del producto vendido, mapeado desde el nombre de propiedad `Product_Name` en el JSON.
+    - **Getter/Setter**: Obtiene o establece el nombre del producto.
+    - **Atributo**: `[JsonProperty("Product_Name")]` indica que esta propiedad se deserializa desde la propiedad `Product_Name` del JSON.
+- **Preco** (`decimal`)
+    
+    - **Descripción**: Precio del producto vendido.
+    - **Getter/Setter**: Obtiene o establece el precio del producto.
+- **dataDeVenda** (`DateTime`)
+    
+    - **Descripción**: Fecha y hora de la venta.
+    - **Getter/Setter**: Obtiene o establece la fecha y hora de la venta.
+
+### Ejemplo de Uso
+
+Este ejemplo muestra cómo deserializar un archivo JSON en una lista de objetos `VendaDeserialize` y cómo acceder a sus propiedades.
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+using Curso_Net_2.Models;
+
+class Program
+{
+    static void Main()
+    {
+        // Leer el contenido del archivo JSON
+        string jsonFile = File.ReadAllText("Arquivos/vendasDeserialize.json");
+
+        // Deserializar el contenido del archivo JSON en una lista de objetos VendaDeserialize
+        List<VendaDeserialize> listDeVendas = JsonConvert.DeserializeObject<List<VendaDeserialize>>(jsonFile);
+
+        // Iterar sobre la lista de ventas y mostrar sus detalles
+        foreach (VendaDeserialize venda in listDeVendas)
+        {
+            Console.WriteLine($"Venda:\n Id: {venda.Id} Producto: {venda.ProductName} Precio: {venda.Preco} Fecha de Venta: {venda.dataDeVenda.ToString("dd/MM/yyyy HH:mm")}");
+        }
+    }
+}
+```
+
+Este documento proporciona una descripción detallada de la clase `VendaDeserialize`, sus propiedades y la configuración necesaria para deserializar objetos desde un archivo JSON utilizando el paquete `Newtonsoft.Json`.
